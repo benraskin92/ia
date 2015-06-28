@@ -1,0 +1,24 @@
+<%= @search %>
+
+<p>
+<% @post.each do |post| %>
+	<% if post.name.include?(@search) || post.description.include?(@search) %>
+	<% @results.push(post) %>
+	<% end %>
+	<% end %>
+<ul id="search_assets">
+<li>
+<% @results.each do |post| %>
+	
+					<% if post.category == 'Real Estate' %>
+						<p><%= image_tag "house.png", class: "icon" %></p>
+						<% end %>
+					<ul id="search_contents">
+					<li>Name: <%= post.name %></li>
+					<li>Description: <%= post.description %></li>
+					<li>Category: <%= post.category %></li>
+					<li>Initial Investment: <%= post.initial_investment %> </li>
+	<% end %>
+</li>
+</ul>
+</p>

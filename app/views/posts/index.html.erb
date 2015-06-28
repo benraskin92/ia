@@ -1,0 +1,44 @@
+<ul id="assets">
+	<h1>Assets</h1>
+	<h2>Total Amount Invested = <%= invested = current_user.posts.sum(:initial_investment) %>
+		<%= puts invested.inspect %></h2>
+	<h2>Search for Assets:</h2>
+		<%= form_tag(search_path, method: :get) do %>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag 'Search' %>
+		<% end %>
+				<% @post.each do |post| %>
+				<li>
+					<% if post.category == 'Real Estate' %>
+						<p><%= image_tag "house.png", class: "icon" %></p>
+						<% end %>
+					<ul id="contents">
+					<li>Name: <%= post.name %></li>
+					<li>Description: <%= post.description %></li>
+					<li>Category: <%= post.category %></li>
+					<li>Initial Investment: <%= post.initial_investment %> </li>
+					<li>Delete Asset? <%= link_to 'Delete', post, :method => :delete, :confirm => "Are you sure?" %></li>
+					<!-- <div class="percent_return"> -->
+					<div style='float: left; width: 50%;'>
+						<li>
+							<%= form_tag(posts_path, method: :get) do %>
+							<%= number_field_tag :return_number, params[:return_number] %>
+							<%= submit_tag 'Submit' %>
+							<% end %> 
+						</li>
+					</div>
+					<div style='float: right; width: 50%;'>
+						<li>
+							
+							<% if post.initial_investment.to_i != 0 %>
+							<%= (((@return_number.to_f - post.initial_investment.to_f)) / (post.initial_investment.to_f ) * 100 ) %> %
+							 <% end %> 
+								</div>
+							
+							
+							</li>
+				</p>
+				</ul>
+				</li>
+					<% end %>			
+			</ul>

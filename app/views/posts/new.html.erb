@@ -1,0 +1,18 @@
+<h1>Add an asset!</h1>
+
+<%= form_for(@post) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, class: "form-control" %>
+
+	<%= f.label :description %>
+	<%= f.text_field :description, class: "form-control" %>
+
+	<%= f.label :initial_investment, "Initial Investment (in $)" %>
+	<%= f.number_field :initial_investment, class: "form-control" %>
+
+	<%= f.label "Category" %>
+	<%= f.select(:category, options_for_select([['Real Esate','Real Estate'],['Auto','Auto'],['Art','Art']]))%>
+
+	<%= f.submit "Create new asset", class: "btn btn-primary" %>
+
+	<% end %>
